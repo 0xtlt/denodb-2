@@ -34,7 +34,8 @@ jobs:
         with:
           deno-version: ${{ matrix.deno }}
 
+      - name: Write new .env test file
+        run: echo "DB_PORT=${{ job.services.mysql.ports['3306'] }}" > /tests/units/.env
+
       - name: Deno Tests
         run: deno test --unstable -A ./tests/units/
-        env:
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
