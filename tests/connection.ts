@@ -5,7 +5,7 @@ const Connection = (): Database => {
     { dialect: "mysql", debug: false },
     {
       database: "test",
-      host: "localhost",
+      host: "127.0.0.1",
       username: "james",
       password: "007",
       port: 3306,
