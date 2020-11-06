@@ -20,7 +20,7 @@ import {
   DataTypes,
   Database,
   Model,
-} from "https://raw.githubusercontent.com/techtastet/denoDB-2/main/mod.ts";
+} from "https://raw.githubusercontent.com/techtastet/denodb-2/main/mod.ts";
 
 const db = new Database("postgres", {
   host: "...",
