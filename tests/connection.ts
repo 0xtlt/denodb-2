@@ -6,8 +6,8 @@ const Connection = (): Database => {
     {
       database: "test",
       host: "127.0.0.1",
-      username: "james",
-      password: "007",
+      username: "root",
+      password: "",
       port: 3306,
     },
   );

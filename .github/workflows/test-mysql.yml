@@ -12,20 +12,21 @@ jobs:
       matrix:
         deno: ["v1.x"]
     runs-on: [ubuntu-latest]
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: test
+        ports:
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - uses: actions/checkout@v2
 
       - uses: denolib/setup-deno@v2
         with:
           deno-version: ${{ matrix.deno }}
-
-      - name: Setup MySQL
-        uses: samin/mysql-action@v1
-        with:
-          mysql version: 5.7
-          mysql database: test
-          mysql user: james
-          mysql password: 007
 
       - name: Deno Tests
         run: deno test --unstable -A ./tests/units/
