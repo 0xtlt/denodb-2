@@ -24,7 +24,8 @@ jobs:
         with:
           mysql version: 5.7
           mysql database: test
-          mysql root password: 007
+          mysql user: james
+          mysql password: 007
 
       - name: Deno Tests
         run: deno test --unstable -A ./tests/units/

@@ -6,7 +6,7 @@ const Connection = (): Database => {
     {
       database: "test",
       host: "localhost",
-      username: "root",
+      username: "james",
       password: "007",
       port: 3306,
     },
