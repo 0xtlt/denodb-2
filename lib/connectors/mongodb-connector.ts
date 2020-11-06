@@ -105,7 +105,7 @@ export class MongoDBConnector implements Connector {
         initMongoDBPlugin,
       } = await import("../../unstable_deps.ts");
       await initMongoDBPlugin(MONGODB_PLUGIN_RELEASE_URL);
-      this._client = new MongoDBClient();
+      this._client = new MongoDBClient() as any;
     }
 
     if (this._options.hasOwnProperty("uri")) {

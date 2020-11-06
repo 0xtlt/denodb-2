@@ -7,9 +7,12 @@
  */
 
 export {
-  ClientOptions as MongoDBClientOptions,
-  Database as MongoDBDatabase,
   init as initMongoDBPlugin,
   MongoClient as MongoDBClient,
   RELEASE_URL as MONGODB_PLUGIN_RELEASE_URL,
-} from "https://raw.githubusercontent.com/eveningkid/deno_mongo/master/mod.ts";
+} from "https://deno.land/x/mongo@v0.13.0/mod.ts";
+
+export type {
+  ClientOptions as MongoDBClientOptions,
+  Database as MongoDBDatabase,
+} from "https://deno.land/x/mongo@v0.13.0/mod.ts";
