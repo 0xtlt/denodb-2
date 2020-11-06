@@ -4,8 +4,6 @@ import { config } from "https://deno.land/x/dotenv/mod.ts";
 const Connection = (): Database => {
   const env = config();
 
-  console.log({ env });
-
   const connection: Database = new Database(
     { dialect: "mysql", debug: true },
     {
