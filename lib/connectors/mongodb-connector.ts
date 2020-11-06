@@ -77,9 +77,10 @@ type MongoDBClient = {
   database(name: string): MongoDBDatabase;
 };
 
-export type MongoDBOptions = ConnectorOptions &
-  (MongoDBOptionsWithURI | MongoDBClientOptions) &
-  MongoDBOptionsBase;
+export type MongoDBOptions =
+  & ConnectorOptions
+  & (MongoDBOptionsWithURI | MongoDBClientOptions)
+  & MongoDBOptionsBase;
 
 export class MongoDBConnector implements Connector {
   _client!: MongoDBClient;
@@ -161,8 +162,9 @@ export class MongoDBConnector implements Connector {
             break;
         }
 
-        const whereValue =
-          curr.field === "_id" ? { $oid: curr.value } : curr.value;
+        const whereValue = curr.field === "_id"
+          ? { $oid: curr.value }
+          : curr.value;
 
         return {
           ...prev,
@@ -211,12 +213,11 @@ export class MongoDBConnector implements Connector {
 
         if (queryDescription.whereIn) {
           wheres[queryDescription.whereIn.field] = {
-            $in:
-              queryDescription.whereIn.field === "_id"
-                ? queryDescription.whereIn.possibleValues.map((value) => ({
-                    $oid: value,
-                  }))
-                : queryDescription.whereIn.possibleValues,
+            $in: queryDescription.whereIn.field === "_id"
+              ? queryDescription.whereIn.possibleValues.map((value) => ({
+                $oid: value,
+              }))
+              : queryDescription.whereIn.possibleValues,
           };
         }
 

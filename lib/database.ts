@@ -21,9 +21,9 @@ import { SQLTranslator } from "./translators/sql-translator.ts";
 type DatabaseOptions =
   | DatabaseDialect
   | {
-      dialect: DatabaseDialect;
-      debug?: boolean;
-    };
+    dialect: DatabaseDialect;
+    debug?: boolean;
+  };
 
 export type SyncOptions = {
   /** If tables should be dropped if they exist. */
@@ -59,15 +59,13 @@ export class Database {
       | MySQLOptions
       | MongoDBOptions,
   ) {
-    this._dialect =
-      typeof databaseOptionsOrDialect === "object"
-        ? databaseOptionsOrDialect.dialect
-        : databaseOptionsOrDialect;
+    this._dialect = typeof databaseOptionsOrDialect === "object"
+      ? databaseOptionsOrDialect.dialect
+      : databaseOptionsOrDialect;
 
-    this._debug =
-      typeof databaseOptionsOrDialect === "object"
-        ? databaseOptionsOrDialect.debug ?? false
-        : false;
+    this._debug = typeof databaseOptionsOrDialect === "object"
+      ? databaseOptionsOrDialect.debug ?? false
+      : false;
 
     this._queryBuilder = new QueryBuilder();
 
@@ -143,7 +141,7 @@ export class Database {
       model._link({
         queryBuilder: this._queryBuilder,
         database: this,
-      }),
+      })
     );
 
     return this;
@@ -162,8 +160,8 @@ export class Database {
 
     return Array.isArray(results)
       ? results.map((result) =>
-          formatResultToModelInstance(query.schema, result),
-        )
+        formatResultToModelInstance(query.schema, result)
+      )
       : formatResultToModelInstance(query.schema, results);
   }
 
@@ -177,10 +175,9 @@ export class Database {
     toDatabase: FieldMatchingTable;
   } {
     const databaseDialect = this.getDialect();
-    const translator =
-      databaseDialect === "mongo"
-        ? new Translator()
-        : new SQLTranslator(databaseDialect);
+    const translator = databaseDialect === "mongo"
+      ? new Translator()
+      : new SQLTranslator(databaseDialect);
 
     const modelFields = { ...fields };
     if (withTimestamps) {
@@ -190,10 +187,9 @@ export class Database {
 
     const toDatabase: FieldMatchingTable = Object.entries(modelFields).reduce(
       (prev: any, [clientFieldName, fieldType]) => {
-        const databaseFieldName =
-          typeof fieldType !== "string" && fieldType.as
-            ? fieldType.as
-            : (translator.formatFieldNameToDatabase(clientFieldName) as string);
+        const databaseFieldName = typeof fieldType !== "string" && fieldType.as
+          ? fieldType.as
+          : (translator.formatFieldNameToDatabase(clientFieldName) as string);
 
         prev[clientFieldName] = databaseFieldName;
         prev[`${table}.${clientFieldName}`] = `${table}.${databaseFieldName}`;
