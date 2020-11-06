@@ -1,14 +1,19 @@
 import { Database } from "../mod.ts";
+import { config } from "https://deno.land/x/dotenv/mod.ts";
 
 const Connection = (): Database => {
+  const env = config();
+
+  console.log({ env });
+
   const connection: Database = new Database(
-    { dialect: "mysql", debug: false },
+    { dialect: "mysql", debug: true },
     {
       database: "test",
       host: "127.0.0.1",
       username: "root",
       password: "",
-      port: 3306,
+      port: Number(env.PORT),
     },
   );
 
