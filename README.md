@@ -16,7 +16,11 @@ The logo is also made for the initial project.
 - Read the documentation, soon but you can see the doc [here](https://eveningkid.github.io/denodb-docs)
 
 ```typescript
-import { DataTypes, Database, Model } from "https://deno.land/x/denodb/mod.ts";
+import {
+  DataTypes,
+  Database,
+  Model,
+} from "https://raw.githubusercontent.com/techtastet/denoDB-2/main/mod.ts";
 
 const db = new Database("postgres", {
   host: "...",
