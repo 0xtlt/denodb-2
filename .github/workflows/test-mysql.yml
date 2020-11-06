@@ -16,19 +16,30 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_DATABASE: test
+          MYSQL_ROOT_PASSWORD: password
         ports:
           - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - uses: actions/checkout@v2
 
-      - uses: denolib/setup-deno@v2
-        with:
-          deno-version: ${{ matrix.deno }}
+      - name: Verify MySQL connection from host
+        run: |
+          sudo apt-get install -y mysql-client
+          mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -ppassword -e "SHOW DATABASES"
 
-      - name: Deno Tests
-        run: deno test --unstable -A ./tests/units/
+      - name: Hello world
+        run: echo Hello world $FIRST_NAME $middle_name $Last_Name!
         env:
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
+          FIRST_NAME: Mona
+          middle_name: The
+          Last_Name: ${{ job.services.mysql.ports[3306] }}
+
+      #- uses: denolib/setup-deno@v2
+      #with:
+      #   deno-version: ${{ matrix.deno }}
+
+      #- name: Deno Tests
+      #  run: deno test --unstable -A ./tests/units/
+      #  env:
+      #    DB_PORT: ${{ job.services.mysql.ports[3306] }}
