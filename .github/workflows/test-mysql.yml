@@ -20,7 +20,7 @@ jobs:
           deno-version: ${{ matrix.deno }}
 
       - name: Setup MySQL
-        uses: mirromutth/mysql-action@master
+        uses: samin/mysql-action@v1
         with:
           mysql version: 5.7
           mysql database: test
