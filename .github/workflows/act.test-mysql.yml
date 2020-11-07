@@ -1,5 +1,11 @@
 name: Act Test MySQL
 
+on:
+  push:
+    branches: [null] # null for github
+  pull_request:
+    branches: [null] # null for github
+
 jobs:
   act-mysql:
     strategy:
