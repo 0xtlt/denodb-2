@@ -1,7 +1,7 @@
 import { Database } from "../mod.ts";
 import { config } from "https://deno.land/x/dotenv/mod.ts";
 
-const Connection = (): Database => {
+const ConnectionMySQL = (): Database => {
   const env = config();
 
   const connection: Database = new Database(
@@ -18,4 +18,4 @@ const Connection = (): Database => {
   return connection;
 };
 
-export default Connection;
+export { ConnectionMySQL };

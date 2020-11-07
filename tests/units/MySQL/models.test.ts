@@ -1,9 +1,9 @@
 import { DataTypes, Model } from "../../../mod.ts";
-import Connection from "../../connection.ts";
+import { ConnectionMySQL } from "../../connection.ts";
 import { assertEquals } from "../../deps.ts";
 
 Deno.test("MySQL One Model", async function () {
-  const connection = Connection();
+  const connection = ConnectionMySQL();
 
   class Flight extends Model {
     static table = "flights";
