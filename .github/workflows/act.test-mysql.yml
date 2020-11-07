@@ -1,0 +1,31 @@
+name: Act Test MySQL
+
+jobs:
+  act-mysql:
+    strategy:
+      matrix:
+        deno: ["v1.x"]
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: denolib/setup-deno@v2
+        with:
+          deno-version: ${{ matrix.deno }}
+
+      - name: Setup MySQL for local only
+        uses: samin/mysql-action@v1
+        with:
+          mysql version: "5.7"
+          mysql database: "test"
+          mysql user: "developer"
+          mysql password: "password"
+
+      - name: Write new .env test file
+        run: |
+          echo "DB_PORT=3306" > ./.env
+          echo "DB_USER=developer" >> ./.env
+          echo "DB_PASS=password" >> ./.env
+
+      - name: Deno Tests
+        run: deno test --unstable -A ./tests/units/

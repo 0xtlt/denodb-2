@@ -9,8 +9,8 @@ const Connection = (): Database => {
     {
       database: "test",
       host: "127.0.0.1",
-      username: "root",
-      password: "password",
+      username: env.DB_USER,
+      password: env.DB_PASS,
       port: Number(env.DB_PORT),
     },
   );

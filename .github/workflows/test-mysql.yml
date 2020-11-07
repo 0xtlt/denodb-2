@@ -1,4 +1,4 @@
-name: Deno
+name: Test MySQL
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  mysql:
     strategy:
       matrix:
         deno: ["v1.x"]
@@ -35,7 +35,10 @@ jobs:
           deno-version: ${{ matrix.deno }}
 
       - name: Write new .env test file
-        run: echo "DB_PORT=${{ job.services.mysql.ports['3306'] }}" > ./.env
+        run: |
+          echo "DB_PORT=${{ job.services.mysql.ports['3306'] }}" > ./.env
+          echo "DB_USER=root" >> ./.env
+          echo "DB_PASS=password" >> ./.env
 
       - name: Deno Tests
         run: deno test --unstable -A ./tests/units/
