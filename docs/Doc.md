@@ -18,7 +18,7 @@
 
 ## Relationships
 
-- [Forein Key](https://github.com/techtastet/denodb-2/docs/ForeinKey.md)
+- [Forein Key](https://github.com/techtastet/denodb-2/blob/main/docs/ForeinKey.md)
 - One-to-one (soon)
 - One-to-many (soon)
 - Many-to-many (soon)
