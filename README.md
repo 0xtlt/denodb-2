@@ -13,14 +13,14 @@ The logo is also made for the initial project.
 - 🗣Supports PostgreSQL, MySQL, MariaDB, SQLite and MongoDB
 - 🔥Simple, typed API
 - 🦕Deno-ready
-- Read the documentation, WIP doc [here](https://github.com/techtastet/denodb-2/docs/Doc.md), you can see the old doc [here](https://eveningkid.github.io/denodb-docs)
+- Read the documentation, WIP doc [here](https://github.com/techtastet/denodb-2/blob/main/docs/Doc.md), you can see the old doc [here](https://eveningkid.github.io/denodb-docs)
 
 ```typescript
 import {
   DataTypes,
   Database,
   Model,
-} from "https://raw.githubusercontent.com/techtastet/denodb-2/blob/main/main/mod.ts";
+} from "https://raw.githubusercontent.com/techtastet/denodb-2/main/mod.ts";
 
 const db = new Database("postgres", {
   host: "...",
